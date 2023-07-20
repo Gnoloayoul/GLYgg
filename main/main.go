@@ -1,18 +1,14 @@
-// 这里相当于playground
-
 package main
+
 import (
 	"fmt"
 	"git.acwing.com/Gnoloayoul/gylgg/slice"
 )
 
+// 这里相当于playground
+
 func main() {
-	a := []int{1, 2, 3, 4, 5}
-	idx := 0
-	res, val, err := slice.Delete(a, idx)
-	if err == nil {
-		fmt.Printf("befort: \narr: %v, len: %d, cap: %d\nafter: \narr: %v, len: %d, cap: %d\n%d", a, len(a), cap(a), res, len(res), cap(res), val)
-	} else {
-		fmt.Println(err)
-	}
+	a := []any{1, 2, 3, "abc", "abc", 5, 5}
+	input := interface{}(5)
+	fmt.Println(slice.FindIdx(a, input))
 }
