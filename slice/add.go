@@ -13,15 +13,13 @@ func Add[T any](a []T, index int, input T) []T {
 	case index <= 0:
 		ans = append(ans, input)
 		ans = append(ans, a...)
-		return ans
 	case index >= length:
 		ans = append(ans, a...)
 		ans = append(ans, input)
-		return ans
 	default:
 		ans = append(ans, a[:index]...)
 		ans = append(ans, input)
 		ans = append(ans, a[index:]...)
-		return ans
 	}
+	return ans
 }

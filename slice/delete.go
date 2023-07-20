@@ -14,22 +14,19 @@ func Delete[T any](a []T, idx int) ([]T, T, error) {
 		var zero T
 		return nil, zero, errs.NewErrIndexOutOfRange(length, idx)
 	}
+	var val T
+	res := make([]T, length - 1, length - 1)
 	switch idx {
 	case 0:
-		val := a[0]
-		res := make([]T, length - 1, length - 1)
+		val = a[0]
 		copy(res[:], a[1:])
-		return res, val, nil
 	case length - 1:
-		val := a[idx]
-		res := make([]T, length - 1, length - 1)
+		val = a[idx]
 		copy(res[:], a[:idx])
-		return res, val, nil
 	default:
-		val := a[idx]
-		res := make([]T, length - 1, length - 1)
+		val = a[idx]
 		copy(res[:idx], a[:idx])
 		copy(res[idx:], a[idx + 1:])
-		return res, val, nil
 	}
+	return res, val, nil
 }
