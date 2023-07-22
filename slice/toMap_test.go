@@ -26,7 +26,7 @@ func TestToMap(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			res := ToMap(tc.src)
+			res := toMap(tc.src)
 			if !reflect.DeepEqual(res, tc.want) {
 				t.Errorf("\nInput: %v\nExpected: %v\nGot: %v", tc.src, tc.want, res)
 			}
@@ -36,20 +36,20 @@ func TestToMap(t *testing.T) {
 
 func ExampleToMap() {
 	src := []string{"a", "b", "c"}
-	fmt.Println(ToMap(src))
+	fmt.Println(toMap(src))
 	// output: map[a:{} b:{} c:{}]
 }
 
 func BenchmarkToMap1(b *testing.B) {
 	src := []int{11, 3, 444, 56, 67, 8, 777, 89, 342, 123, 99}
 	for i := 0; i < b.N; i++ {
-		ToMap(src)
+		toMap(src)
 	}
 }
 
 func BenchmarkToMap2(b *testing.B) {
 	src := []string{"abs", "asdfasd", "cccc", "ddd", "ffff", "asdfa", "gsrg", "dtgsdfg", "dgsedgsrty"}
 	for i := 0; i < b.N; i++ {
-		ToMap(src)
+		toMap(src)
 	}
 }
