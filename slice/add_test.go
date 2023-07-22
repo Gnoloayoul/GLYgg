@@ -64,7 +64,7 @@ func ExampleAdd() {
 	src := []int{1, -2, 3}
 	input := 6
 	idx := 2
-	fmt.Println(slice.Add(src, idx, input))
+	fmt.Println(Add(src, idx, input))
 	// output: [1 -2 6 3]
 }
 

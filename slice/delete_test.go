@@ -100,8 +100,8 @@ func TestDelete(t *testing.T) {
 func ExampleDelete() {
 	src := []int{1, -2, 3}
 	idx := 0
-	res, val, err := slice.Delete(src, idx)
-	fmt.Printf(res, val, err)
+	res, val, err := Delete(src, idx)
+	fmt.Println(res, val, err)
 	// output: [-2 3] 1 <nil>
 }
 

@@ -44,7 +44,7 @@ func TestChangeSlice(t *testing.T) {
 
 func ExampleChangeSlice() {
 	src := []int{1, 2, 3}
-	dst := slice.ChangeSlice(src, func(idx, src int) string {
+	dst := ChangeSlice(src, func(idx, src int) string {
 		return strconv.Itoa(src)
 	})
 	fmt.Println(dst)

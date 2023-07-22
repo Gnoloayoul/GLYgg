@@ -78,7 +78,7 @@ func TestFindIdx(t *testing.T) {
 func ExampleFindIdx() {
 	src := []string{"a", "b", "c"}
 	input := "c"
-	fmt.Println(slice.FindIdx(src, input))
+	fmt.Println(FindIdx(src, input))
 	// output: 2
 }
 
