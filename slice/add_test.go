@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -57,6 +58,14 @@ func TestAdd(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleAdd() {
+	src := []int{1, -2, 3}
+	input := 6
+	idx := 2
+	fmt.Println(slice.Add(src, idx, input))
+	// output: [1 -2 6 3]
 }
 
 // 测试：在序列头添加

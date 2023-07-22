@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -72,6 +73,13 @@ func TestFindIdx(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleFindIdx() {
+	src := []string{"a", "b", "c"}
+	input := "c"
+	fmt.Println(slice.FindIdx(src, input))
+	// output: 2
 }
 
 func BenchmarkFindIdx(b *testing.B) {

@@ -43,7 +43,7 @@ func TestFilterSlice(t *testing.T) {
 
 func ExampleFilterSlice() {
 	src := []int{1, -2, 3}
-	dst := FilterSlice(src, func(idx, src int) (string, bool) {
+	dst := slice.FilterSlice(src, func(idx, src int) (string, bool) {
 		return strconv.Itoa(src), src >= 0
 	})
 	fmt.Println(dst)

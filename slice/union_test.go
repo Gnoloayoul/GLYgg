@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -40,6 +41,13 @@ func TestUnion(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleUnion() {
+	src1 := []string{"a", "b", "c"}
+	src2 := []string{"A", "B", "C"}
+	fmt.Println(slice.Union(src1, src2))
+	// output: [a b c A B C]
 }
 
 func BenchmarkUnion(b *testing.B) {

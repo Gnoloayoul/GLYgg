@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"fmt"
 	"git.acwing.com/Gnoloayoul/gylgg/errs"
 	"reflect"
 	"testing"
@@ -94,6 +95,14 @@ func TestDelete(t *testing.T) {
 			}
 		})
 	}
+}
+
+func ExampleDelete() {
+	src := []int{1, -2, 3}
+	idx := 0
+	res, val, err := slice.Delete(src, idx)
+	fmt.Printf(res, val, err)
+	// output: [-2 3] 1 <nil>
 }
 
 // 测试：删除序列头 int
