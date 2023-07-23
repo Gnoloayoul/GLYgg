@@ -10,6 +10,6 @@ import (
 func main() {
 	src := []int{1, -2, 3, 5, 3}
 	dst := 3
-	res := slice.FirstIndex(src, dst)
+	res := slice.AllIndex(src, dst)
 	fmt.Println(res)
 }
