@@ -8,6 +8,9 @@ import (
 // 这里相当于playground
 
 func main() {
-	src := []int{1, 2, 3}
-	fmt.Println(slice.Sum(src))
+	src := []int{1, -2, 3}
+	res := slice.FilterDelete(src, func(idx, src int) bool {
+		return idx == 0
+	})
+	fmt.Println(res)
 }
