@@ -26,7 +26,7 @@ func TestDeduplicate(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			res := Deduplicate(tc.src)
+			res := deduplicate(tc.src)
 			if !reflect.DeepEqual(res, tc.want) {
 				t.Errorf("\nInput: %v\nExpected: %v\nGot: %v", tc.src, tc.want, res)
 			}
@@ -36,11 +36,11 @@ func TestDeduplicate(t *testing.T) {
 
 func ExampleDeduplicate() {
 	src := []int{1, 2, 3, 3}
-	res := Deduplicate(src)
+	res := deduplicate(src)
 	fmt.Println(res)
 
 	src2 := []string{"a", "b", "b", "c"}
-	res2 := Deduplicate(src2)
+	res2 := deduplicate(src2)
 	fmt.Println(res2)
 	// output:
 	// [1 2 3]

@@ -29,7 +29,7 @@ func TestDeduplicateFunc(t *testing.T) {
 			equal := func(a, b int) bool {
 				return a == b
 			}
-			res := DeduplicateFunc(tc.src, equal)
+			res := deduplicateFunc(tc.src, equal)
 			if !reflect.DeepEqual(res, tc.want) {
 				t.Errorf("\nInput: %v\nExpected: %v\nGot: %v", tc.src, tc.want, res)
 			}
@@ -42,7 +42,7 @@ func ExampleDeduplicateFunc() {
 	equal := func(a, b int) bool {
 		return a == b
 	}
-	res1 := DeduplicateFunc(src1, equal)
+	res1 := deduplicateFunc(src1, equal)
 	fmt.Println(res1)
 	// output: [1 2 3]
 }
