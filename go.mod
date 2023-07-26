@@ -1,4 +1,4 @@
-module git.acwing.com/Gnoloayoul/gylgg
+module github.com/Gnoloayoul/GYLgg
 
 go 1.20
 

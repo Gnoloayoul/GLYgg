@@ -1,6 +1,6 @@
 package slice
 
-import "git.acwing.com/Gnoloayoul/gylgg"
+import "github.com/Gnoloayoul/GYLgg"
 
 // Sum
 // 返回输入的切片的和

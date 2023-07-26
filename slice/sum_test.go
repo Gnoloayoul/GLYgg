@@ -2,7 +2,7 @@ package slice
 
 import (
 	"fmt"
-	"git.acwing.com/Gnoloayoul/gylgg"
+	"github.com/Gnoloayoul/GYLgg"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

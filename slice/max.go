@@ -1,6 +1,6 @@
 package slice
 
-import "git.acwing.com/Gnoloayoul/gylgg"
+import "github.com/Gnoloayoul/GYLgg"
 
 // Max
 // 返回最大值
