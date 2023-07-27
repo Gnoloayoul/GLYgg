@@ -55,42 +55,98 @@ func (l *LinkedList[T]) Append(ts ...T) error {
 	return nil
 }
 
-type  struct{}
-
-func () Get(index int) (interface{}, error) {
-	panic("implement me")
+func (l *LinkedList) findNode(index int) *node[T] {
+	var cur *node[T]
+	if index <= l.Len() / 2 {
+		cur = l.head
+		for i := -1; i < index; i++ {
+			cur = cur.next
+		}
+	} else {
+		cur = l.tail
+		for i := l.Len(); i > index; i-- {
+			cur = cur.prev
+		}
+	}
+	return cur
 }
 
-func () Append(ts ...interface{}) error {
-	panic("implement me")
+func (l *LinkedList[T]) Get(index int) (T, error) {
+	if !l.checkIndex(index) {
+		var zeroValue T
+		return zeroValue, errs.NewErrIndexOutOfRange(l.Len(), index)
+	}
+	n := l.findNode(index)
+	return n.val, nil
 }
 
-func () Add(index int, t interface{}) error {
-	panic("implement me")
+func (l *LinkedList[T]) checkIndex(index int) bool {
+	return 0 <= index && index < l.Len()
 }
 
-func () Set(index int, t interface{}) error {
-	panic("implement me")
+// Add
+// 在下标为 index 的位置插入一个元素
+// 当 index 等于 LinkedList 长度等同于Append
+func (l *LinkedList[T]) Add(index int, t T) error {
+	if index < 0 || index > l.length {
+		return errs.NewErrIndexOutOfRange(l.length, index)
+	}
+	if index == l.length {
+		return l.Append(t)
+	}
+	next := l.findNode(index)
+	node := &node[T]{prev: next.prev, next: next, val: t}
+	node.prev.next, node.next.prev = node, node
+	l.length++
+	return nil
 }
 
-func () Delete(index int) (interface{}, error) {
-	panic("implement me")
+// Set
+// 设置链表中 index 索引处的值为t
+func (l *LinkedList[T]) Set(index int, t T) error {
+	if !l.checkIndex(index) {
+		return errs.NewErrIndexOutOfRang(l.Len(), index)
+	}
+	node := l.findNode(index)
+	node.val = t
+	return nil
 }
 
-func () Len() int {
-	panic("implement me")
+// Delete
+// 删除指定位置的元素
+func (l *LinkedList[T]) Delete(index int) (T, error) {
+	if !l.checkIndex(index) {
+		var zeroValue T
+		return zeroValue, errs.NewErrIndexOutOfRange(l.Len(), index)
+	}
+	node := l.findNode(index)
+	node.prev.next = node.next
+	node.next.prev = node.prev
+	node.prev, node.next = nil, nil
+	l.length--
+	return node.val, nil
 }
 
-func () Cap() int {
-	panic("implement me")
+func (l *LinkedList[T]) Len() int {
+	return l.length
 }
 
-func () Range(fn func(index int, t interface{}) error) error {
-	panic("implement me")
+func (l *LinkedList[T]) Cap() int {
+	return l.Len()
+}
+
+func (l *LinkedList[T]) Range(fn func(index int, t T) error) error {
+	for cur, i := l.head.next, 0; i < l.length; i++ {
+		err := fn(i, cur.val)
+		if err != nil {
+			return err
+		}
+		cur = cur.next
+	}
+	return nil
 }
 
 func () ChangeSlice() []interface{} {
 	panic("implement me")
 }
 
-func (l *LinkedList[T])
