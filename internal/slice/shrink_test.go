@@ -15,21 +15,21 @@ func TestShrink(t *testing.T) {
 	}{
 		{
 			name:        "小于64",
-			originCap:   32,
-			enqueueLoop: 6,
-			expectCap:   32,
+			originCap:   4000,
+			enqueueLoop: 999,
+			expectCap:   2500,
 		},
 		{
 			name:        "小于2048, 不足1/4",
-			originCap:   1000,
-			enqueueLoop: 20,
-			expectCap:   500,
+			originCap:   2047,
+			enqueueLoop: 10,
+			expectCap:   1023,
 		},
 		{
 			name:        "小于2048, 超过1/4",
-			originCap:   1000,
-			enqueueLoop: 400,
-			expectCap:   1000,
+			originCap:   2049,
+			enqueueLoop: 10,
+			expectCap:   1280,
 		},
 		{
 			name:        "大于2048，不足一半",

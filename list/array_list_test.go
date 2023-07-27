@@ -45,14 +45,14 @@ func TestArrayList_Add(t *testing.T) {
 			list:    NewArrayListOf[int]([]int{1, 2, 3}),
 			newVal:  100,
 			index:   -1,
-			wantErr: fmt.Errorf("ekit: 下标超出范围，长度 %d, 下标 %d", 3, -1),
+			wantErr: fmt.Errorf("GYLgg: 下标越界, 长度 %d, 当前下标 %d\n", 3, -1),
 		},
 		{
 			name:    "add num to index OutOfRange",
 			list:    NewArrayListOf[int]([]int{1, 2, 3}),
 			newVal:  100,
 			index:   4,
-			wantErr: fmt.Errorf("ekit: 下标超出范围，长度 %d, 下标 %d", 3, 4),
+			wantErr: fmt.Errorf("GYLgg: 下标越界, 长度 %d, 当前下标 %d\n", 3, 4),
 		},
 	}
 
@@ -186,7 +186,7 @@ func TestArrayList_Append(t *testing.T) {
 				return
 			}
 
-			assert.Equal(t, tc.wantSlice, tc.list.AsSlice())
+			assert.Equal(t, tc.wantSlice, tc.list.ChangeSlice())
 		})
 	}
 }
@@ -415,14 +415,14 @@ func TestArrayList_Get(t *testing.T) {
 			list:    NewArrayListOf[int]([]int{123, 100}),
 			index:   2,
 			wantVal: 0,
-			wantErr: fmt.Errorf("ekit: 下标超出范围，长度 %d, 下标 %d", 2, 2),
+			wantErr: fmt.Errorf("GYLgg: 下标越界, 长度 %d, 当前下标 %d\n", 2, 2),
 		},
 		{
 			name:    "index -1",
 			list:    NewArrayListOf[int]([]int{123, 100}),
 			index:   -1,
 			wantVal: 0,
-			wantErr: fmt.Errorf("ekit: 下标超出范围，长度 %d, 下标 %d", 2, -1),
+			wantErr: fmt.Errorf("GYLgg: 下标越界, 长度 %d, 当前下标 %d\n", 2, -1),
 		},
 	}
 
@@ -494,7 +494,7 @@ func TestArrayList_Range(t *testing.T) {
 func TestArrayList_AsSlice(t *testing.T) {
 	vals := []int{1, 2, 3}
 	a := NewArrayListOf[int](vals)
-	slice := a.AsSlice()
+	slice := a.ChangeSlice()
 	// 内容相同
 	assert.Equal(t, slice, vals)
 	aAddr := fmt.Sprintf("%p", vals)
@@ -526,7 +526,7 @@ func TestArrayList_Set(t *testing.T) {
 			index:     -1,
 			newVal:    5,
 			wantSlice: []int{},
-			wantErr:   fmt.Errorf("ekit: 下标超出范围，长度 %d, 下标 %d", 5, -1),
+			wantErr:   fmt.Errorf("GYLgg: 下标越界, 长度 %d, 当前下标 %d\n", 5, -1),
 		},
 		{
 			name:      "index  100",
@@ -534,7 +534,7 @@ func TestArrayList_Set(t *testing.T) {
 			index:     100,
 			newVal:    5,
 			wantSlice: []int{},
-			wantErr:   fmt.Errorf("ekit: 下标超出范围，长度 %d, 下标 %d", 5, 100),
+			wantErr:   fmt.Errorf("GYLgg: 下标越界, 长度 %d, 当前下标 %d\n", 5, 100),
 		},
 	}
 

@@ -1,6 +1,6 @@
 package list
 
-import "github.com/Gonloayoul/internal/errs"
+import "github.com/Gnoloayoul/GYLgg/internal/errs"
 
 var (
 	_ List[any] = &LinkedList[any]{}
@@ -36,7 +36,7 @@ func NewLinkedList[T any]() *LinkedList[T] {
 
 // NewLinkListOf
 // 将切片转换为双向循环链表，直接使用切片元素的值
-func NewLinkListOf[T any](ts []T) *LinkedList[T] {
+func NewLinkedListOf[T any](ts []T) *LinkedList[T] {
 	list := NewLinkedList[T]()
 	if err := list.Append(ts...); err != nil {
 		panic(err)
@@ -55,7 +55,7 @@ func (l *LinkedList[T]) Append(ts ...T) error {
 	return nil
 }
 
-func (l *LinkedList) findNode(index int) *node[T] {
+func (l *LinkedList[T]) findNode(index int) *node[T] {
 	var cur *node[T]
 	if index <= l.Len() / 2 {
 		cur = l.head
@@ -105,7 +105,7 @@ func (l *LinkedList[T]) Add(index int, t T) error {
 // 设置链表中 index 索引处的值为t
 func (l *LinkedList[T]) Set(index int, t T) error {
 	if !l.checkIndex(index) {
-		return errs.NewErrIndexOutOfRang(l.Len(), index)
+		return errs.NewErrIndexOutOfRange(l.Len(), index)
 	}
 	node := l.findNode(index)
 	node.val = t
@@ -146,7 +146,15 @@ func (l *LinkedList[T]) Range(fn func(index int, t T) error) error {
 	return nil
 }
 
-func () ChangeSlice() []interface{} {
-	panic("implement me")
+// ChangeSlice
+// 将 LinkedList 转化为切片。
+// 是  NewLinkListOf 的逆操作
+func (l *LinkedList[T]) ChangeSlice() []T {
+	slice := make([]T, l.length)
+	for cur, i := l.head.next, 0; i < l.length; i++ {
+		slice[i] = cur.val
+		cur = cur.next
+	}
+	return slice
 }
 

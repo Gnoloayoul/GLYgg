@@ -26,6 +26,5 @@ func Delete[T any](a []T, idx int) ([]T, T, error) {
 		copy(a[idx:], a[idx + 1:])
 		a = a[:length - 1]
 	}
-	a = Shrink(a)
 	return a, val, nil
 }

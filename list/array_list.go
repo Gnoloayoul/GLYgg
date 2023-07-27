@@ -1,8 +1,8 @@
 package list
 
 import (
-	"github.com/Gnoloayoul/gylgg/internal"
-	"github.com/Gnoloayoul/gylgg/slice"
+	"github.com/Gnoloayoul/GYLgg/internal/errs"
+	"github.com/Gnoloayoul/GYLgg/internal/slice"
 )
 
 var (
@@ -51,17 +51,13 @@ func (a *ArrayList[T]) Append(ts ...T) error {
 // 当index等于ArrayList长度，就是append
 func (a *ArrayList[T]) Add(index int, t T) error {
 	length := len(a.vals)
-	if index >= length || index < 0 {
+	if index > length || index < 0 {
 		return  errs.NewErrIndexOutOfRange(length, index)
 	}
 
-	switch index{
-	case len(a.vals) - 1:
-		a.vals = append(a.vals, t)
-	default:
-		copy(a.vals[index + 1:], a.vals[index:])
-		a.vals[index] = t
-	}
+	a.vals = append(a.vals, t)
+	copy(a.vals[index + 1:], a.vals[index:])
+	a.vals[index] = t
 	return nil
 }
 
